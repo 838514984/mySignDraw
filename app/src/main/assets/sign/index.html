@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+	<title>Index</title>
+<script type="text/javascript" charset="utf-8" src="jquery-2.1.1.js"> </script>
+</head>
+<body>
+<div class="name">
+
+	<a href="javascript:void(0)" id="getSign"> 获取签名 </a>
+	<a href="javascript:void(0)" id="clear" > 清除</a>
+	<a href="javascript:void(0)" id="off" > 关闭</a>
+	<a href="javascript:void(0)" id="on" > 开始</a>
+
+	<a href="javascript:void(0)" id="normal" > normal</a>
+	<a href="javascript:void(0)" id="bolder" > bolder</a>
+	<a href="javascript:void(0)" id="bolder2" > bolder2</a>
+
+	<p id="signdata" style="width:500px;">
+<img id="signimg" src="" />
+		
+	</p>
+	
+	
+</div>
+<iframe style="border:1px solid #555;width:500px;height:350px;" name="draw" src="draw.html" ></iframe>
+
+<script type="text/javascript" charset="utf-8">
+
+$('#normal').on('click',function(){
+draw.window.changeBold(0.5,2.5); 
+});
+$('#bolder').on('click',function(){
+draw.window.changeBold(2,5); 
+});
+$('#bolder2').on('click',function(){
+draw.window.changeBold(5,10); 
+});
+
+
+$('#getSign').on('click',function(){
+var signdata = draw.window.getSign(); 
+
+
+$('#signimg').attr('src',signdata);
+		
+		});
+
+$('#clear').on('click',function(){
+draw.window.clear(); 
+});
+
+$('#off').on('click',function(){
+draw.window.off(); 
+});
+
+$('#on').on('click',function(){
+draw.window.on(); 
+});
+</script>
+</body>
+
+</html>

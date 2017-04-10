@@ -1,0 +1,91 @@
+﻿<!doctype html>
+<html lang="zh-cn">
+	<head>
+		<meta charset="utf-8">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<title>signature_pad</title>
+		<link rel="stylesheet" type="text/css" href="draw.css" />
+		
+
+	</head>
+	<body>
+
+		<div class="draw" id="draw">
+		    <div class="sig" id="sig">
+		    	<canvas id="canvas" >Your browser doesn't support signing</canvas>
+		    </div>
+		
+		</div>
+	
+<script src="jquery-2.1.1.js"></script>
+<script src="signature_pad.js"></script>
+<script src="jquery.ui.touch-punch.min.js"></script>
+<script type="text/javascript">
+	function changeSize(){
+	
+		$('#sig').css("min-height",(window.innerHeight));
+		$("#canvas").attr({"height":(window.innerHeight),"width":window.innerWidth});
+		$('html,body').css({scrollTop:0});
+	   
+	    var canvasX = $("#canvas")[0];
+
+	 
+
+	    signaturePad = new SignaturePad(canvasX,{
+		dotSize : 0 ,
+		velocityFilterWeight :1,
+		penColor: "rgb(0,0,0)",
+		backgroundColor:"rgb(256,256,256)"
+	    });
+
+	}
+
+	function changeBold(minWidth,maxWidth){
+			signaturePad.minWidth = minWidth;
+			signaturePad.maxWidth = maxWidth;
+		
+
+	}
+
+	function getSign(){
+		//获取图片的base64码
+		if(signaturePad.isEmpty()){
+			return false;
+		}else{
+			var canvas = document.getElementById("canvas");
+			var canvasData = canvas.toDataURL("image/jpeg");
+			/* canvasData = encodeURIComponent(encodeURIComponent(canvasData));    */
+			return canvasData;
+		}
+
+	}
+	function clear(){
+		//清除画布
+	signaturePad.clear();
+
+	}
+	function off(){
+		//关闭画布
+	signaturePad.off();
+	}
+	function on(){
+		//开启画布
+	signaturePad.on();
+	}
+
+	$(function(){
+	changeSize();
+	$(window).resize(function(){
+	    changeSize();
+	});
+
+	});
+
+
+
+
+</script>
+	</body>
+</html>
